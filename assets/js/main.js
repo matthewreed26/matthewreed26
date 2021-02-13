@@ -4,216 +4,343 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
+(function ($) {
+  var $window = $(window),
+    $body = $("body"),
+    $header = $("#header"),
+    $all = $body.add($header);
 
-	var	$window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$all = $body.add($header);
+  // Breakpoints.
+  breakpoints({
+    xxlarge: ["1681px", "1920px"],
+    xlarge: ["1281px", "1680px"],
+    large: ["1001px", "1280px"],
+    medium: ["737px", "1000px"],
+    small: ["481px", "736px"],
+    xsmall: [null, "480px"],
+  });
 
-	// Breakpoints.
-		breakpoints({
-			xxlarge: [ '1681px',  '1920px' ],
-			xlarge:  [ '1281px',  '1680px' ],
-			large:   [ '1001px',  '1280px' ],
-			medium:  [ '737px',   '1000px' ],
-			small:   [ '481px',   '736px'  ],
-			xsmall:  [ null,      '480px'  ]
-		});
+  // Play initial animations on page load.
+  $window.on("load", function () {
+    setTimeout(function () {
+      $body.removeClass("is-preload");
+    }, 100);
+  });
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+  // Touch mode.
+  if (browser.mobile) $body.addClass("is-touch");
+  else {
+    breakpoints.on("<=small", function () {
+      $body.addClass("is-touch");
+    });
 
-	// Touch mode.
-		if (browser.mobile)
-			$body.addClass('is-touch');
-		else {
+    breakpoints.on(">small", function () {
+      $body.removeClass("is-touch");
+    });
+  }
 
-			breakpoints.on('<=small', function() {
-				$body.addClass('is-touch');
-			});
+  // Fix: IE flexbox fix.
+  if (browser.name == "ie") {
+    var $main = $(".main.fullscreen"),
+      IEResizeTimeout;
 
-			breakpoints.on('>small', function() {
-				$body.removeClass('is-touch');
-			});
+    $window
+      .on("resize.ie-flexbox-fix", function () {
+        clearTimeout(IEResizeTimeout);
 
-		}
+        IEResizeTimeout = setTimeout(function () {
+          var wh = $window.height();
 
-	// Fix: IE flexbox fix.
-		if (browser.name == 'ie') {
+          $main.each(function () {
+            var $this = $(this);
 
-			var $main = $('.main.fullscreen'),
-				IEResizeTimeout;
+            $this.css("height", "");
 
-			$window
-				.on('resize.ie-flexbox-fix', function() {
+            if ($this.height() <= wh) $this.css("height", wh - 50 + "px");
+          });
+        });
+      })
+      .triggerHandler("resize.ie-flexbox-fix");
+  }
 
-					clearTimeout(IEResizeTimeout);
+  // Gallery.
+  $(".gallery")
+    .wrapInner('<div class="inner"></div>')
+    .prepend(
+      browser.mobile
+        ? ""
+        : '<div class="forward"></div><div class="backward"></div>'
+    )
+    .scrollex({
+      top: "30vh",
+      bottom: "30vh",
+      delay: 50,
+      initialize: function () {
+        $(this).addClass("is-inactive");
+      },
+      terminate: function () {
+        $(this).removeClass("is-inactive");
+      },
+      enter: function () {
+        $(this).removeClass("is-inactive");
+      },
+      leave: function () {
+        var $this = $(this);
 
-					IEResizeTimeout = setTimeout(function() {
+        if ($this.hasClass("onscroll-bidirectional"))
+          $this.addClass("is-inactive");
+      },
+    })
+    .children(".inner")
+    //.css('overflow', 'hidden')
+    .css("overflow-y", browser.mobile ? "visible" : "hidden")
+    .css("overflow-x", browser.mobile ? "scroll" : "hidden")
+    .scrollLeft(0);
 
-						var wh = $window.height();
+  // Style #1.
+  // ...
 
-						$main.each(function() {
+  // Style #2.
+  $(".gallery")
+    .on("wheel", ".inner", function (event) {
+      var $this = $(this),
+        delta = event.originalEvent.deltaX * 10;
 
-							var $this = $(this);
+      // Cap delta.
+      if (delta > 0) delta = Math.min(25, delta);
+      else if (delta < 0) delta = Math.max(-25, delta);
 
-							$this.css('height', '');
+      // Scroll.
+      $this.scrollLeft($this.scrollLeft() + delta);
+    })
+    .on("mouseenter", ".forward, .backward", function (event) {
+      var $this = $(this),
+        $inner = $this.siblings(".inner"),
+        direction = $this.hasClass("forward") ? 1 : -1;
 
-							if ($this.height() <= wh)
-								$this.css('height', (wh - 50) + 'px');
+      // Clear move interval.
+      clearInterval(this._gallery_moveIntervalId);
 
-						});
+      // Start interval.
+      this._gallery_moveIntervalId = setInterval(function () {
+        $inner.scrollLeft($inner.scrollLeft() + 5 * direction);
+      }, 10);
+    })
+    .on("mouseleave", ".forward, .backward", function (event) {
+      // Clear move interval.
+      clearInterval(this._gallery_moveIntervalId);
+    });
 
-					});
+  // Lightbox.
+  $(".gallery.lightbox")
+    .on("click", "a", function (event) {
+      var $a = $(this),
+        $gallery = $a.parents(".gallery"),
+        $modal = $gallery.children(".modal"),
+        $modalImg = $modal.find("img"),
+        href = $a.attr("href");
 
-				})
-				.triggerHandler('resize.ie-flexbox-fix');
+      // Not an image? Bail.
+      if (!href.match(/\.(jpg|gif|png|mp4)$/)) return;
 
-		}
+      // Prevent default.
+      event.preventDefault();
+      event.stopPropagation();
 
-	// Gallery.
-		$window.on('load', function() {
+      // Locked? Bail.
+      if ($modal[0]._locked) return;
 
-			var $gallery = $('.gallery');
+      // Lock.
+      $modal[0]._locked = true;
 
-			$gallery.poptrox({
-				baseZIndex: 10001,
-				useBodyOverflow: false,
-				usePopupEasyClose: false,
-				overlayColor: '#1f2328',
-				overlayOpacity: 0.65,
-				usePopupDefaultStyling: false,
-				usePopupCaption: true,
-				popupLoaderText: '',
-				windowMargin: 50,
-				usePopupNav: true
-			});
+      // Set src.
+      $modalImg.attr("src", href);
 
-			// Hack: Adjust margins when 'small' activates.
-				breakpoints.on('>small', function() {
-					$gallery.each(function() {
-						$(this)[0]._poptrox.windowMargin = 50;
-					});
-				});
+      // Set visible.
+      $modal.addClass("visible");
 
-				breakpoints.on('<=small', function() {
-					$gallery.each(function() {
-						$(this)[0]._poptrox.windowMargin = 5;
-					});
-				});
+      // Focus.
+      $modal.focus();
 
-		});
+      // Delay.
+      setTimeout(function () {
+        // Unlock.
+        $modal[0]._locked = false;
+      }, 600);
+    })
+    .on("click", ".modal", function (event) {
+      var $modal = $(this),
+        $modalImg = $modal.find("img");
 
-	// Section transitions.
-		if (browser.canUse('transition')) {
+      // Locked? Bail.
+      if ($modal[0]._locked) return;
 
-			var on = function() {
+      // Already hidden? Bail.
+      if (!$modal.hasClass("visible")) return;
 
-				// Galleries.
-					$('.gallery')
-						.scrollex({
-							top:		'30vh',
-							bottom:		'30vh',
-							delay:		50,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
+      // Lock.
+      $modal[0]._locked = true;
 
-				// Generic sections.
-					$('.main.style1')
-						.scrollex({
-							mode:		'middle',
-							delay:		100,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
+      // Clear visible, loaded.
+      $modal.removeClass("loaded");
 
-					$('.main.style2')
-						.scrollex({
-							mode:		'middle',
-							delay:		100,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
+      // Delay.
+      setTimeout(function () {
+        $modal.removeClass("visible");
 
-				// Contact.
-					$('#contact')
-						.scrollex({
-							top:		'50%',
-							delay:		50,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
+        setTimeout(function () {
+          // Clear src.
+          $modalImg.attr("src", "");
 
-			};
+          // Unlock.
+          $modal[0]._locked = false;
 
-			var off = function() {
+          // Focus.
+          $body.focus();
+        }, 475);
+      }, 125);
+    })
+    .on("keypress", ".modal", function (event) {
+      var $modal = $(this);
 
-				// Galleries.
-					$('.gallery')
-						.unscrollex();
+      // Escape? Hide modal.
+      if (event.keyCode == 27) $modal.trigger("click");
+    })
+    .prepend(
+      '<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>'
+    )
+    .find("img")
+    .on("load", function (event) {
+      var $modalImg = $(this),
+        $modal = $modalImg.parents(".modal");
 
-				// Generic sections.
-					$('.main.style1')
-						.unscrollex();
+      setTimeout(function () {
+        // No longer visible? Bail.
+        if (!$modal.hasClass("visible")) return;
 
-					$('.main.style2')
-						.unscrollex();
+        // Set loaded.
+        $modal.addClass("loaded");
+      }, 275);
+    });
 
-				// Contact.
-					$('#contact')
-						.unscrollex();
+  // Section transitions.
+  if (browser.canUse("transition")) {
+    var on = function () {
+      // Galleries.
+      $(".gallery").scrollex({
+        top: "30vh",
+        bottom: "30vh",
+        delay: 50,
+        initialize: function () {
+          $(this).addClass("inactive");
+        },
+        terminate: function () {
+          $(this).removeClass("inactive");
+        },
+        enter: function () {
+          $(this).removeClass("inactive");
+        },
+        leave: function () {
+          $(this).addClass("inactive");
+        },
+      });
 
-			};
+      // Generic sections.
+      $(".main.style1").scrollex({
+        mode: "middle",
+        delay: 100,
+        initialize: function () {
+          $(this).addClass("inactive");
+        },
+        terminate: function () {
+          $(this).removeClass("inactive");
+        },
+        enter: function () {
+          $(this).removeClass("inactive");
+        },
+        leave: function () {
+          $(this).addClass("inactive");
+        },
+      });
 
-			breakpoints.on('<=small', off);
-			breakpoints.on('>small', on);
+      $(".main.style2").scrollex({
+        mode: "middle",
+        delay: 100,
+        initialize: function () {
+          $(this).addClass("inactive");
+        },
+        terminate: function () {
+          $(this).removeClass("inactive");
+        },
+        enter: function () {
+          $(this).removeClass("inactive");
+        },
+        leave: function () {
+          $(this).addClass("inactive");
+        },
+      });
 
-		}
+      // Contact.
+      $("#contact").scrollex({
+        top: "50%",
+        delay: 50,
+        initialize: function () {
+          $(this).addClass("inactive");
+        },
+        terminate: function () {
+          $(this).removeClass("inactive");
+        },
+        enter: function () {
+          $(this).removeClass("inactive");
+        },
+        leave: function () {
+          $(this).addClass("inactive");
+        },
+      });
+    };
 
-	// Events.
-		var resizeTimeout, resizeScrollTimeout;
+    var off = function () {
+      // Galleries.
+      $(".gallery").unscrollex();
 
-		$window
-			.on('resize', function() {
+      // Generic sections.
+      $(".main.style1").unscrollex();
 
-				// Disable animations/transitions.
-					$body.addClass('is-resizing');
+      $(".main.style2").unscrollex();
 
-				clearTimeout(resizeTimeout);
+      // Contact.
+      $("#contact").unscrollex();
+    };
 
-				resizeTimeout = setTimeout(function() {
+    breakpoints.on("<=small", off);
+    breakpoints.on(">small", on);
+  }
 
-					// Update scrolly links.
-						$('a[href^="#"]').scrolly({
-							speed: 1500,
-							offset: $header.outerHeight() - 1
-						});
+  // Events.
+  var resizeTimeout, resizeScrollTimeout;
 
-					// Re-enable animations/transitions.
-						setTimeout(function() {
-							$body.removeClass('is-resizing');
-							$window.trigger('scroll');
-						}, 0);
+  $window
+    .on("resize", function () {
+      // Disable animations/transitions.
+      $body.addClass("is-resizing");
 
-				}, 100);
+      clearTimeout(resizeTimeout);
 
-			})
-			.on('load', function() {
-				$window.trigger('resize');
-			});
+      resizeTimeout = setTimeout(function () {
+        // Update scrolly links.
+        $('a[href^="#"]').scrolly({
+          speed: 1500,
+          offset: $header.outerHeight() - 1,
+        });
 
+        // Re-enable animations/transitions.
+        setTimeout(function () {
+          $body.removeClass("is-resizing");
+          $window.trigger("scroll");
+        }, 0);
+      }, 100);
+    })
+    .on("load", function () {
+      $window.trigger("resize");
+    });
 })(jQuery);
