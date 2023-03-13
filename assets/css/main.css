@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
-@import url("fontawesome-all.min.css");
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900');
+@import url('fontawesome-all.min.css');
 
 /*
 	Big Picture by HTML5 UP
@@ -128,7 +128,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 
@@ -535,7 +535,7 @@ body:before {
   font-weight: normal;
   text-transform: none !important;
   color: #e5e6e7;
-  content: "\f1ce";
+  content: '\f1ce';
   cursor: default;
   display: block;
   font-size: 2em;
@@ -557,7 +557,7 @@ body:after {
   -ms-animation: overlay-hide 1.5s ease-in forwards !important;
   animation: overlay-hide 1.5s ease-in forwards !important;
   background: #ffffff;
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   left: 0;
@@ -601,7 +601,7 @@ body,
 input,
 textarea,
 select {
-  font-family: "Source Sans Pro", "sans-serif";
+  font-family: 'Source Sans Pro', 'sans-serif';
   font-weight: 300;
   font-size: 18pt;
   line-height: 1.75em;
@@ -767,9 +767,9 @@ table {
 
 /* Button */
 
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
 .button,
 button {
   -moz-appearance: none;
@@ -795,25 +795,25 @@ button {
   text-decoration: none;
 }
 
-input[type="button"].down,
-input[type="submit"].down,
-input[type="reset"].down,
+input[type='button'].down,
+input[type='submit'].down,
+input[type='reset'].down,
 .button.down,
 button.down {
   width: 5em;
   height: 5em;
   line-height: 4.5em;
   padding: 0;
-  background-image: url("images/dark-arrow.svg");
+  background-image: url('images/dark-arrow.svg');
   background-position: center center;
   background-repeat: no-repeat;
   text-indent: -10em;
   overflow: hidden;
 }
 
-input[type="button"].down.anchored,
-input[type="submit"].down.anchored,
-input[type="reset"].down.anchored,
+input[type='button'].down.anchored,
+input[type='submit'].down.anchored,
+input[type='reset'].down.anchored,
 .button.down.anchored,
 button.down.anchored {
   bottom: 0;
@@ -823,34 +823,34 @@ button.down.anchored {
   margin-left: -2.5em;
 }
 
-input[type="button"].anchored,
-input[type="submit"].anchored,
-input[type="reset"].anchored,
+input[type='button'].anchored,
+input[type='submit'].anchored,
+input[type='reset'].anchored,
 .button.anchored,
 button.anchored {
   position: absolute;
   left: 50%;
 }
 
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover,
 .button:hover,
 button:hover {
   background-color: #a8cea4;
 }
 
-input[type="button"]:active,
-input[type="submit"]:active,
-input[type="reset"]:active,
+input[type='button']:active,
+input[type='submit']:active,
+input[type='reset']:active,
 .button:active,
 button:active {
   background-color: #88bc82;
 }
 
-input[type="button"].style2,
-input[type="submit"].style2,
-input[type="reset"].style2,
+input[type='button'].style2,
+input[type='submit'].style2,
+input[type='reset'].style2,
 .button.style2,
 button.style2 {
   background-color: transparent;
@@ -858,28 +858,28 @@ button.style2 {
   color: inherit;
 }
 
-input[type="button"].style2:hover,
-input[type="submit"].style2:hover,
-input[type="reset"].style2:hover,
+input[type='button'].style2:hover,
+input[type='submit'].style2:hover,
+input[type='reset'].style2:hover,
 .button.style2:hover,
 button.style2:hover {
   background-color: rgba(229, 230, 231, 0.25);
 }
 
-input[type="button"].style2:active,
-input[type="submit"].style2:active,
-input[type="reset"].style2:active,
+input[type='button'].style2:active,
+input[type='submit'].style2:active,
+input[type='reset'].style2:active,
 .button.style2:active,
 button.style2:active {
   background-color: rgba(229, 230, 231, 0.375);
 }
 
-input[type="button"].style2.down,
-input[type="submit"].style2.down,
-input[type="reset"].style2.down,
+input[type='button'].style2.down,
+input[type='submit'].style2.down,
+input[type='reset'].style2.down,
 .button.style2.down,
 button.style2.down {
-  background-image: url("images/arrow.svg");
+  background-image: url('images/arrow.svg');
 }
 
 /* Form */
@@ -958,12 +958,12 @@ label {
   display: block;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="search"],
-input[type="url"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='tel'],
+input[type='search'],
+input[type='url'],
 select,
 textarea {
   -moz-appearance: none;
@@ -985,23 +985,23 @@ textarea {
   outline: none;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="search"]:focus,
-input[type="url"]:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus,
+input[type='tel']:focus,
+input[type='search']:focus,
+input[type='url']:focus,
 select:focus,
 textarea:focus {
   border-color: #9ac8e9;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="search"],
-input[type="url"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='tel'],
+input[type='search'],
+input[type='url'],
 select {
   line-height: 1.35em;
 }
@@ -1047,7 +1047,7 @@ textarea {
   text-rendering: auto;
   line-height: 1;
   text-transform: none !important;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
 
@@ -1064,7 +1064,7 @@ textarea {
 }
 
 .icon.brands:before {
-  font-family: "Font Awesome 5 Brands";
+  font-family: 'Font Awesome 5 Brands';
 }
 
 /* Image */
@@ -1075,13 +1075,13 @@ textarea {
 }
 
 .image:before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: url("images/overlay.png");
+  background: url('images/overlay.png');
 }
 
 .image img {
@@ -1256,17 +1256,17 @@ ul.actions.fit.stacked {
     padding-top: 0;
   }
 
-  ul.actions:not(.fixed) li input[type="submit"],
-  ul.actions:not(.fixed) li input[type="reset"],
-  ul.actions:not(.fixed) li input[type="button"],
+  ul.actions:not(.fixed) li input[type='submit'],
+  ul.actions:not(.fixed) li input[type='reset'],
+  ul.actions:not(.fixed) li input[type='button'],
   ul.actions:not(.fixed) li button,
   ul.actions:not(.fixed) li .button {
     width: 100%;
   }
 
-  ul.actions:not(.fixed) li input[type="submit"].icon:before,
-  ul.actions:not(.fixed) li input[type="reset"].icon:before,
-  ul.actions:not(.fixed) li input[type="button"].icon:before,
+  ul.actions:not(.fixed) li input[type='submit'].icon:before,
+  ul.actions:not(.fixed) li input[type='reset'].icon:before,
+  ul.actions:not(.fixed) li input[type='button'].icon:before,
   ul.actions:not(.fixed) li button.icon:before,
   ul.actions:not(.fixed) li .button.icon:before {
     margin-left: -0.5rem;
@@ -1376,7 +1376,7 @@ table.default tfoot {
   font-weight: normal;
   text-transform: none !important;
   color: #e5e6e7;
-  content: "\f1ce";
+  content: '\f1ce';
   cursor: default;
   display: block;
   height: 2em;
@@ -1420,11 +1420,11 @@ table.default tfoot {
 
 .poptrox-popup .nav-next:before,
 .poptrox-popup .nav-previous:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 96px;
   height: 64px;
-  background: url("images/poptrox-nav.svg");
+  background: url('images/poptrox-nav.svg');
   top: calc(50% - 1.5em);
   margin: -32px 0 0 0;
 }
@@ -1444,7 +1444,7 @@ table.default tfoot {
   -webkit-transform: scaleX(-1);
   -ms-transform: scaleX(-1);
   transform: scaleX(-1);
-  -ms-filter: "FlipH";
+  -ms-filter: 'FlipH';
   filter: FlipH;
 }
 
@@ -1481,7 +1481,7 @@ table.default tfoot {
 }
 
 .poptrox-popup .closer:before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   right: 16px;
@@ -1490,7 +1490,7 @@ table.default tfoot {
   height: 40px;
   border-radius: 100%;
   box-shadow: inset 0 0 0 2px #fff;
-  background: url("images/poptrox-closer.svg") center center;
+  background: url('images/poptrox-closer.svg') center center;
   color: #ffffff !important;
 }
 
@@ -2089,9 +2089,9 @@ body.is-preload .gallery.onload-fade-in article .image img {
   border-bottom-color: white;
 }
 
-.gallery.style1 input[type="submit"],
-.gallery.style1 input[type="reset"],
-.gallery.style1 input[type="button"],
+.gallery.style1 input[type='submit'],
+.gallery.style1 input[type='reset'],
+.gallery.style1 input[type='button'],
 .gallery.style1 button,
 .gallery.style1 .button {
   background-color: transparent;
@@ -2099,18 +2099,18 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #ffffff !important;
 }
 
-.gallery.style1 input[type="submit"]:hover,
-.gallery.style1 input[type="reset"]:hover,
-.gallery.style1 input[type="button"]:hover,
+.gallery.style1 input[type='submit']:hover,
+.gallery.style1 input[type='reset']:hover,
+.gallery.style1 input[type='button']:hover,
 .gallery.style1 button:hover,
 .gallery.style1 .button:hover {
   box-shadow: inset 0 0 0 1px #47d3e5;
   color: #47d3e5 !important;
 }
 
-.gallery.style1 input[type="submit"]:active,
-.gallery.style1 input[type="reset"]:active,
-.gallery.style1 input[type="button"]:active,
+.gallery.style1 input[type='submit']:active,
+.gallery.style1 input[type='reset']:active,
+.gallery.style1 input[type='button']:active,
 .gallery.style1 button:active,
 .gallery.style1 .button:active {
   background-color: rgba(71, 211, 229, 0.2);
@@ -2118,9 +2118,9 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #47d3e5 !important;
 }
 
-.gallery.style1 input[type="submit"].primary,
-.gallery.style1 input[type="reset"].primary,
-.gallery.style1 input[type="button"].primary,
+.gallery.style1 input[type='submit'].primary,
+.gallery.style1 input[type='reset'].primary,
+.gallery.style1 input[type='button'].primary,
 .gallery.style1 button.primary,
 .gallery.style1 .button.primary {
   background-color: #ffffff;
@@ -2128,17 +2128,17 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #000000 !important;
 }
 
-.gallery.style1 input[type="submit"].primary:hover,
-.gallery.style1 input[type="reset"].primary:hover,
-.gallery.style1 input[type="button"].primary:hover,
+.gallery.style1 input[type='submit'].primary:hover,
+.gallery.style1 input[type='reset'].primary:hover,
+.gallery.style1 input[type='button'].primary:hover,
 .gallery.style1 button.primary:hover,
 .gallery.style1 .button.primary:hover {
   background-color: #47d3e5;
 }
 
-.gallery.style1 input[type="submit"].primary:active,
-.gallery.style1 input[type="reset"].primary:active,
-.gallery.style1 input[type="button"].primary:active,
+.gallery.style1 input[type='submit'].primary:active,
+.gallery.style1 input[type='reset'].primary:active,
+.gallery.style1 input[type='button'].primary:active,
 .gallery.style1 button.primary:active,
 .gallery.style1 .button.primary:active {
   background-color: #1ebdd1;
@@ -2408,9 +2408,9 @@ body.is-preload .gallery.onload-fade-in article .image img {
   border-bottom-color: white;
 }
 
-.gallery.style2 input[type="submit"],
-.gallery.style2 input[type="reset"],
-.gallery.style2 input[type="button"],
+.gallery.style2 input[type='submit'],
+.gallery.style2 input[type='reset'],
+.gallery.style2 input[type='button'],
 .gallery.style2 button,
 .gallery.style2 .button {
   background-color: transparent;
@@ -2418,18 +2418,18 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #ffffff !important;
 }
 
-.gallery.style2 input[type="submit"]:hover,
-.gallery.style2 input[type="reset"]:hover,
-.gallery.style2 input[type="button"]:hover,
+.gallery.style2 input[type='submit']:hover,
+.gallery.style2 input[type='reset']:hover,
+.gallery.style2 input[type='button']:hover,
 .gallery.style2 button:hover,
 .gallery.style2 .button:hover {
   box-shadow: inset 0 0 0 1px #47d3e5;
   color: #47d3e5 !important;
 }
 
-.gallery.style2 input[type="submit"]:active,
-.gallery.style2 input[type="reset"]:active,
-.gallery.style2 input[type="button"]:active,
+.gallery.style2 input[type='submit']:active,
+.gallery.style2 input[type='reset']:active,
+.gallery.style2 input[type='button']:active,
 .gallery.style2 button:active,
 .gallery.style2 .button:active {
   background-color: rgba(71, 211, 229, 0.2);
@@ -2437,9 +2437,9 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #47d3e5 !important;
 }
 
-.gallery.style2 input[type="submit"].primary,
-.gallery.style2 input[type="reset"].primary,
-.gallery.style2 input[type="button"].primary,
+.gallery.style2 input[type='submit'].primary,
+.gallery.style2 input[type='reset'].primary,
+.gallery.style2 input[type='button'].primary,
 .gallery.style2 button.primary,
 .gallery.style2 .button.primary {
   background-color: #ffffff;
@@ -2447,17 +2447,17 @@ body.is-preload .gallery.onload-fade-in article .image img {
   color: #000000 !important;
 }
 
-.gallery.style2 input[type="submit"].primary:hover,
-.gallery.style2 input[type="reset"].primary:hover,
-.gallery.style2 input[type="button"].primary:hover,
+.gallery.style2 input[type='submit'].primary:hover,
+.gallery.style2 input[type='reset'].primary:hover,
+.gallery.style2 input[type='button'].primary:hover,
 .gallery.style2 button.primary:hover,
 .gallery.style2 .button.primary:hover {
   background-color: #47d3e5;
 }
 
-.gallery.style2 input[type="submit"].primary:active,
-.gallery.style2 input[type="reset"].primary:active,
-.gallery.style2 input[type="button"].primary:active,
+.gallery.style2 input[type='submit'].primary:active,
+.gallery.style2 input[type='reset'].primary:active,
+.gallery.style2 input[type='button'].primary:active,
 .gallery.style2 button.primary:active,
 .gallery.style2 .button.primary:active {
   background-color: #1ebdd1;
@@ -2489,7 +2489,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
   text-rendering: auto;
   line-height: 1;
   text-transform: none !important;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
 
@@ -2520,7 +2520,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
 }
 
 .gallery.style2 > .forward:before {
-  content: "\f105";
+  content: '\f105';
   right: 0;
 }
 
@@ -2534,7 +2534,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
 }
 
 .gallery.style2 > .backward:before {
-  content: "\f104";
+  content: '\f104';
   left: 0;
 }
 
@@ -2800,7 +2800,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
   -webkit-transition-delay: 0.5s;
   -ms-transition-delay: 0.5s;
   transition-delay: 0.5s;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 50%;
@@ -2816,7 +2816,7 @@ body.is-preload .gallery.onload-fade-in article .image img {
 }
 
 .gallery.lightbox .modal:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0.5rem;
@@ -3133,7 +3133,7 @@ body {
 }
 
 .main.dark .button.style2.down {
-  background-image: url("images/dark-arrow.svg");
+  background-image: url('images/dark-arrow.svg');
 }
 
 body.is-touch .main {
@@ -3293,7 +3293,7 @@ body.is-touch .main {
 /* Intro */
 
 #intro {
-  background: url("images/overlay.png"), url("../../images/intro.jpg");
+  background: url('images/overlay.png'), url('../../images/intro.jpg');
   background-size: 256px 256px, cover;
   background-attachment: fixed, fixed;
   background-position: top left, bottom center;
@@ -3303,7 +3303,7 @@ body.is-touch .main {
 /* One */
 
 #one {
-  background: url("images/overlay.png"), url("../../images/one.jpg");
+  background: url('images/overlay.png'), url('../../images/one.jpg');
   background-size: 256px 256px, cover;
   background-attachment: fixed, fixed;
   background-position: top left, center center;
@@ -3312,7 +3312,7 @@ body.is-touch .main {
 /* Two */
 
 #two {
-  background: url("images/overlay.png"), url("../../images/two.jpg");
+  background: url('images/overlay.png'), url('../../images/two.jpg');
   background-size: 256px 256px, cover;
   background-attachment: fixed, fixed;
   background-position: top left, center center;
@@ -3321,7 +3321,7 @@ body.is-touch .main {
 /* Three */
 
 #three {
-  background: url("images/overlay.png"), url("../../images/three.jpg");
+  background: url('images/overlay.png'), url('../../images/three.jpg');
   background-size: 256px 256px, cover;
   background-attachment: fixed, fixed;
   background-position: top left, center center;
@@ -3330,7 +3330,7 @@ body.is-touch .main {
 /* four */
 
 #four {
-  background: url("images/overlay.png"), url("../../images/four.png");
+  background: url('images/overlay.png'), url('../../images/four.png');
   background-size: 256px 256px, cover;
   background-attachment: fixed, fixed;
   background-position: top left, center center;
@@ -3372,4 +3372,18 @@ body.is-touch .main {
   #contact .box {
     padding: 1em 1em 2em 1em;
   }
+}
+
+#instafeed {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+}
+#instafeed img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
 }
